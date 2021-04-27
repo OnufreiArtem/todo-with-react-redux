@@ -64,7 +64,7 @@ const ControlBtn = styled.button`
 const RemoveBtn = styled(ControlBtn)`
     &:hover {
         background-color: var(--clr3);
-        color: #c41212;
+        color: #eb0e0e;
     }
 `
 
