@@ -61,7 +61,7 @@ export default function AddTask({ onAdd }) {
     const dispatch = useDispatch();
 
     const addTask = () => {
-        if (taskTitle.length != 0)
+        if (taskTitle.length !== 0)
             dispatch(addTaskAction(createTask(taskInput.current.value)));
         setTaskTitle(``);
     };

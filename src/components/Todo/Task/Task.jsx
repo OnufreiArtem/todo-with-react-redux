@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 
 import styled from 'styled-components';
 
@@ -81,7 +81,6 @@ const ChangeBtn = styled(ControlBtn)`
 
 export default function Task({task}) {
     const titleInput = useRef();
-    const [done, setDone] = useState(task.done);
     const [taskTitle, setTaskTitle] = useState(task.title);
     const dispatch = useDispatch();
 
@@ -106,8 +105,15 @@ export default function Task({task}) {
             <TaskTitle done={task.done} ref={titleInput} value={taskTitle} onBlur={() => onBlurEvent()} onChange={() => setTaskTitle(titleInput.current.value)} />
 
             <ControlsContainer>  
-                <RemoveBtn onClick={() => dispatch(removeTaskAction(task.id))}><i class="fas fa-trash"></i></RemoveBtn>
-                <ChangeBtn done={task.done} onClick={() => dispatch(updateTaskAction(taskWithChangedState(task)))}><i class="fas fa-check-circle"></i></ChangeBtn>
+                <RemoveBtn onClick={() => dispatch(removeTaskAction(task.id))}>
+					<i class="fas fa-trash"></i>
+				</RemoveBtn>
+                <ChangeBtn done={task.done} onClick={() => dispatch(updateTaskAction(taskWithChangedState(task)))}>
+					{
+						task.done ? <i class="fas fa-arrow-circle-up"></i>  : <i class="fas fa-check-circle"></i>
+					}
+				
+				</ChangeBtn>
             </ControlsContainer>
         </TaskLayout>
     )
